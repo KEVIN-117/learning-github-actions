@@ -11,6 +11,7 @@ jobs:
       - run: echo "$(cat hello_world.txt)"
   build:
     runs-on: ubuntu-latest
+    needs: hello-world-job
     steps:
       - name: use node.js
         uses: actions/setup-node@v4.1.0
