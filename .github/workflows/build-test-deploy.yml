@@ -23,7 +23,7 @@ jobs:
           yarn install
           yarn build
   test:
-    needs: [hello-world-job, build]
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
