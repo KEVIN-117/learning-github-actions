@@ -13,6 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: hello-world-job
     steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
       - name: use node.js
         uses: actions/setup-node@v4.1.0
         with:
