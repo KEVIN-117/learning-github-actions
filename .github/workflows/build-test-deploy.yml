@@ -35,3 +35,36 @@ jobs:
       - run: |
           yarn install
           yarn test
+  deploy:
+    needs: test
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    environment:
+      name: production
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN}}
+      - name: uses node.js
+        uses: actions/setup-node@v4.1.0
+        with:
+          node-version: "20.x"
+      - name: configure github pages
+        uses: actions/configure-pages@v5
+        with:
+          static_site_generator: next
+      - run: |
+          yarn install
+          yarn build
+      - name: upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: "./out"
+      - name: deploy
+        id: deployment
+        uses: actions/deploy-pages@v1
