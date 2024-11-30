@@ -1,4 +1,6 @@
-import { Html, Head, Main, NextScript } from 'next/document'
+import Blog from "@/components/Blog";
+import Team from "@/components/Team";
+import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
   return (
@@ -7,7 +9,9 @@ export default function Document() {
       <body>
         <Main />
         <NextScript />
+        <Blog />
+        <Team />
       </body>
     </Html>
-  )
+  );
 }
